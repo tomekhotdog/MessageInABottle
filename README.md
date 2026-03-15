@@ -2,6 +2,8 @@
 
 A digital edition of 36 merchants' letters intercepted in the English Channel in 1533, presented with modern English translations for the first time.
 
+**Live site:** [messageinabottle.tomek-szymaniec.workers.dev](https://messageinabottle.tomek-szymaniec.workers.dev/)
+
 In the summer of 1533, Lübeck privateers seized a merchant ship off the south coast of England. Among the cargo were private letters — business correspondence, family news, a dying mother's farewell — that had never reached their recipients. Confiscated as evidence and filed in the Lübeck city archives, they survived unread for nearly five centuries.
 
 This project takes the scholarly transcriptions published in [*Message in a Bottle*](https://www.brepols.net/products/IS-9782503595405-1) (Jenks & Wubs-Mrozewicz, eds., 2022) and makes them accessible to a general audience through AI-generated modern English translations and a browsable web interface.
