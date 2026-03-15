@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Message in a Bottle — Merchants' Letters, 1533</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+/* ── CSS VARIABLES ── */
+:root {
+  --parchment: #f2ece0;
+  --parchment-warm: #ede5d5;
+  --sepia: #3d2e1e;
+  --sepia-mid: #5e4a35;
+  --sepia-light: #8b7a66;
+  --sepia-faint: #b3a792;
+  --oxide: #8e3b2a;
+  --oxide-light: #a85040;
+  --oxide-faint: rgba(142, 59, 42, 0.12);
+  --white: #f8f5ee;
+  --rule: #d1c7b4;
+  --rule-light: #ddd5c4;
+  --shadow: rgba(61, 46, 30, 0.06);
+}
+
+/* ── RESET & BASE ── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { font-size: 17px; }
+
+body {
+  font-family: 'Crimson Pro', serif;
+  background: var(--parchment);
+  color: var(--sepia);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── HEADER ── */
+header {
+  padding: 5rem 2rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(600px, 80vw);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rule), transparent);
+}
+
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(600px, 80vw);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rule), transparent);
+}
+
+.ornament {
+  font-size: 0.7rem;
+  color: var(--sepia-faint);
+  letter-spacing: 0.5em;
+  margin-bottom: 1.5rem;
+}
+
+header h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 400;
+  font-size: 2.4rem;
+  line-height: 1.2;
+  color: var(--sepia);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.3rem;
+}
+
+header .subtitle-line {
+  font-family: 'Crimson Pro', serif;
+  font-weight: 300;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--sepia-mid);
+  letter-spacing: 0.02em;
+}
+
+header .desc {
+  font-family: 'Crimson Pro', serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--sepia-light);
+  max-width: 480px;
+  margin: 1.5rem auto 0;
+  line-height: 1.75;
+}
+
+/* ── NAV TABS ── */
+nav.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--parchment);
+}
+
+nav.tabs button {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--sepia-faint);
+  background: none;
+  border: none;
+  padding: 0.4rem 0;
+  cursor: pointer;
+  transition: color 0.2s;
+  letter-spacing: 0.03em;
+  border-bottom: 1.5px solid transparent;
+}
+
+nav.tabs button:hover { color: var(--sepia-mid); }
+
+nav.tabs button.active {
+  color: var(--sepia);
+  border-bottom-color: var(--oxide);
+}
+
+/* ── MAIN ── */
+main {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+}
+
+/* ── FEATURED LETTER ── */
+.featured {
+  background: var(--white);
+  border: 1px solid var(--rule-light);
+  padding: 2.5rem 2.5rem 2rem;
+  margin-bottom: 3rem;
+  position: relative;
+  cursor: pointer;
+  transition: box-shadow 0.25s;
+}
+
+.featured:hover {
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.featured::before {
+  content: 'FEATURED';
+  position: absolute;
+  top: -0.5rem;
+  left: 2rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  color: var(--oxide);
+  background: var(--parchment);
+  padding: 0 0.75rem;
+}
+
+.featured .sender-line {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.3rem;
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+}
+
+.featured .sender-line .to {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--sepia-mid);
+  font-size: 1rem;
+}
+
+.featured .meta-line {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--sepia-faint);
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.featured .excerpt {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--sepia-mid);
+  line-height: 1.75;
+  border-left: 2px solid var(--oxide-faint);
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.featured .summary-text {
+  font-size: 0.88rem;
+  color: var(--sepia-light);
+  line-height: 1.7;
+}
+
+.read-link {
+  display: inline-block;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--oxide);
+  text-decoration: none;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.read-link:hover { color: var(--oxide-light); }
+
+/* ── SECTION DIVIDER ── */
+.section-divider {
+  text-align: center;
+  margin: 2rem 0 1.5rem;
+}
+
+.section-divider h2 {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 400;
+  font-size: 1.15rem;
+  color: var(--sepia);
+  display: inline;
+  background: var(--parchment);
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+.section-divider::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rule), transparent);
+  margin-bottom: -0.6rem;
+}
+
+/* ── SECTION HEADERS (Case File) ── */
+.section-header {
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-header h3 {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: var(--sepia);
+}
+
+.section-header .section-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--sepia-faint);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* ── FILTERS ── */
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.filters .filter-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sepia-faint);
+  margin-right: 0.15rem;
+}
+
+.filter-pill {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.78rem;
+  color: var(--sepia-faint);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-pill:hover {
+  border-color: var(--sepia-faint);
+  color: var(--sepia-mid);
+}
+
+.filter-pill.active {
+  background: var(--sepia);
+  border-color: var(--sepia);
+  color: var(--parchment);
+}
+
+.filter-sep {
+  width: 1px;
+  height: 1rem;
+  background: var(--rule);
+  margin: 0 0.5rem;
+}
+
+/* ── LETTER LIST ROWS ── */
+.letter-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.letter-row {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--rule-light);
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  gap: 1.5rem;
+  align-items: start;
+  cursor: pointer;
+  transition: background 0.2s;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeUp 0.4s ease-out forwards;
+}
+
+.letter-row:hover {
+  background: rgba(248, 245, 238, 0.6);
+  margin: 0 -1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.letter-row:last-child { border-bottom: 1px solid var(--rule-light); }
+
+.row-number {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--rule);
+  line-height: 1;
+  padding-top: 0.15rem;
+}
+
+.row-body h3 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 0.3rem;
+}
+
+.row-body h3 .arrow {
+  font-family: 'Crimson Pro', serif;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--sepia-mid);
+  font-size: 0.9rem;
+  margin: 0 0.2rem;
+}
+
+.row-body .summary {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--sepia-light);
+  line-height: 1.65;
+  max-width: 580px;
+}
+
+.row-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  padding-top: 0.15rem;
+  white-space: nowrap;
+}
+
+.row-meta .date {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--sepia-faint);
+  letter-spacing: 0.05em;
+}
+
+.row-meta .lang {
+  font-size: 0.72rem;
+  font-style: italic;
+  color: var(--sepia-faint);
+}
+
+.badge-notable {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--oxide);
+  border: 1px solid var(--oxide);
+  border-radius: 1px;
+  padding: 0.15rem 0.4rem;
+  margin-top: 0.2rem;
+}
+
+/* ── DOCUMENT LIST ROWS ── */
+.doc-row {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule-light);
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  gap: 1.5rem;
+  align-items: start;
+  cursor: pointer;
+  transition: background 0.2s;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeUp 0.4s ease-out forwards;
+}
+
+.doc-row:hover {
+  background: rgba(248, 245, 238, 0.6);
+  margin: 0 -1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.doc-row:last-child { border-bottom: 1px solid var(--rule-light); }
+
+.doc-row .row-body h3 {
+  font-size: 0.95rem;
+}
+
+.badge-type {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sepia-light);
+  background: var(--parchment-warm);
+  border-radius: 2px;
+  padding: 0.15rem 0.45rem;
+  margin-top: 0.2rem;
+}
+
+/* ── DETAIL OVERLAY & SLIDE-IN PANEL ── */
+.detail-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(61, 46, 30, 0.25);
+  backdrop-filter: blur(3px);
+}
+
+.detail-overlay.open { display: block; }
+
+.detail-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(720px, 90vw);
+  height: 100vh;
+  background: var(--white);
+  overflow-y: auto;
+  box-shadow: -4px 0 24px var(--shadow);
+  padding: 3rem 2.5rem 4rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.detail-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-size: 1.5rem;
+  color: var(--sepia-faint);
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-close:hover { color: var(--sepia); }
+
+.detail-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule-light);
+}
+
+.detail-header .number {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 3rem;
+  font-weight: 400;
+  color: var(--rule);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.detail-header h2 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+.detail-meta-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.detail-meta-item {
+  font-size: 0.78rem;
+}
+
+.detail-meta-item .meta-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sepia-faint);
+  display: block;
+  margin-bottom: 0.1rem;
+}
+
+.detail-meta-item .meta-value {
+  color: var(--sepia-mid);
+}
+
+/* ── THEME TAGS ── */
+.theme-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.theme-tag {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--sepia-light);
+  background: var(--parchment);
+  border: 1px solid var(--rule-light);
+  border-radius: 12px;
+  padding: 0.2rem 0.6rem;
+}
+
+/* ── DETAIL SECTIONS ── */
+.detail-section {
+  margin-bottom: 2rem;
+}
+
+.detail-section h3 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--sepia);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.detail-section h3::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule-light);
+}
+
+.detail-text {
+  font-size: 0.9rem;
+  line-height: 1.85;
+  color: var(--sepia);
+}
+
+.detail-text.summary {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--sepia-mid);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.detail-text.original {
+  font-size: 0.82rem;
+  color: var(--sepia-light);
+}
+
+.detail-text p + p { margin-top: 0.75rem; }
+
+/* ── TOGGLE BUTTONS ── */
+.toggle-btn {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--oxide);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.35rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.2s;
+}
+
+.toggle-btn:hover { color: var(--oxide-light); }
+
+.toggle-btn .chevron {
+  font-size: 0.65rem;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+.toggle-btn.expanded .chevron {
+  transform: rotate(90deg);
+}
+
+.collapsible {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.collapsible.open {
+  max-height: 3000px;
+}
+
+/* ── AI DISCLAIMER ── */
+.ai-note {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--sepia-faint);
+  border-left: 2px solid var(--rule);
+  padding: 0.5rem 0.75rem;
+  margin-top: 1rem;
+  line-height: 1.7;
+}
+
+/* ── ABOUT PAGE ── */
+.about-content {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.about-content h2 {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: var(--sepia);
+  margin: 2.5rem 0 0.75rem;
+}
+
+.about-content h2:first-child {
+  margin-top: 0;
+}
+
+.about-content p {
+  font-size: 0.92rem;
+  color: var(--sepia-mid);
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+
+.about-content a {
+  color: var(--oxide);
+  text-decoration: none;
+}
+
+.about-content a:hover {
+  text-decoration: underline;
+}
+
+.about-content .credit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.about-content .credit-list li {
+  font-size: 0.88rem;
+  color: var(--sepia-mid);
+  padding: 0.3rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.about-content .credit-list li::before {
+  content: '\2022';
+  position: absolute;
+  left: 0;
+  color: var(--sepia-faint);
+}
+
+/* ── INTRO PARAGRAPH (Case File) ── */
+.intro-text {
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  font-size: 0.92rem;
+  color: var(--sepia-light);
+  line-height: 1.75;
+}
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--sepia-faint);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 2.5rem 2rem;
+}
+
+footer::before {
+  content: '';
+  display: block;
+  width: min(400px, 60vw);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rule), transparent);
+  margin: 0 auto 1.5rem;
+}
+
+footer p {
+  font-size: 0.75rem;
+  color: var(--sepia-faint);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+footer p + p {
+  margin-top: 0.4rem;
+}
+
+footer a { color: var(--oxide); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.featured {
+  opacity: 0;
+  animation: cardIn 0.5s ease-out 0.1s forwards;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  header {
+    padding: 3.5rem 1.5rem 2rem;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  header .desc {
+    font-size: 0.82rem;
+  }
+
+  nav.tabs {
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+  }
+
+  nav.tabs button {
+    font-size: 0.78rem;
+  }
+
+  main {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .featured {
+    padding: 1.5rem 1.5rem 1.25rem;
+  }
+
+  .featured .sender-line {
+    font-size: 1.1rem;
+  }
+
+  .letter-row,
+  .doc-row {
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1rem;
+  }
+
+  .row-meta {
+    grid-column: 2;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: -0.25rem;
+  }
+
+  .detail-panel {
+    width: 100vw;
+    padding: 2rem 1.5rem 3rem;
+  }
+
+  .detail-header .number {
+    font-size: 2rem;
+  }
+
+  .detail-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .filter-pill {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.75rem;
+  }
+
+  .filters {
+    gap: 0.35rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<header id="site-header"></header>
+<nav class="tabs" id="site-nav"></nav>
+<main id="main-content"></main>
+<div class="detail-overlay" id="detail-overlay"></div>
+<footer id="site-footer"></footer>
+
+<!-- Data injection -->
+<script>
+/* __LETTERS_DATA__ */
+/* __DOCUMENTS_DATA__ */
+</script>
+
+<!-- Application logic -->
+<script>
+// ── STATE ──
+let currentTab = 'letters';   // 'letters' | 'casefile' | 'about'
+let currentDetail = null;      // { type: 'letter'|'doc', id: number } or null
+let filters = { type: 'all', language: 'all', notable: false };
+
+// ── ROUTER ──
+function parseHash() {
+  const hash = location.hash.slice(1);
+  if (hash.startsWith('letter/')) {
+    return { tab: 'letters', detail: { type: 'letter', id: parseInt(hash.split('/')[1]) } };
+  }
+  if (hash.startsWith('doc/')) {
+    return { tab: 'casefile', detail: { type: 'doc', id: parseInt(hash.split('/')[1]) } };
+  }
+  if (hash === 'about') return { tab: 'about', detail: null };
+  if (hash === 'casefile') return { tab: 'casefile', detail: null };
+  return { tab: 'letters', detail: null };
+}
+
+function navigate(tab, detail) {
+  currentTab = tab;
+  currentDetail = detail;
+  if (detail) {
+    location.hash = `${detail.type === 'letter' ? 'letter' : 'doc'}/${detail.id}`;
+  } else if (tab === 'about') {
+    location.hash = 'about';
+  } else if (tab === 'casefile') {
+    location.hash = 'casefile';
+  } else {
+    history.replaceState(null, '', location.pathname);
+  }
+  render();
+}
+
+window.addEventListener('hashchange', () => {
+  const state = parseHash();
+  currentTab = state.tab;
+  currentDetail = state.detail;
+  render();
+});
+
+// ── RENDER: NAV ──
+function renderNav() {
+  const nav = document.getElementById('site-nav');
+  const tabs = [
+    { id: 'letters', label: 'The Letters' },
+    { id: 'casefile', label: 'The Case File' },
+    { id: 'about', label: 'About' }
+  ];
+  nav.innerHTML = tabs.map(t =>
+    `<button class="${currentTab === t.id ? 'active' : ''}" data-tab="${t.id}">${t.label}</button>`
+  ).join('');
+  nav.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      navigate(btn.dataset.tab, null);
+    });
+  });
+}
+
+// ── RENDER: HEADER ──
+function renderHeader() {
+  const header = document.getElementById('site-header');
+  header.innerHTML = `
+    <div class="ornament">&loz; &loz; &loz;</div>
+    <h1>Message in a Bottle</h1>
+    <p class="subtitle-line">Merchants' Letters from the English Channel, 1533</p>
+    <p class="desc">Thirty-six letters seized from a merchant ship by L&uuml;beck privateers &mdash; personal correspondence, trade reports, and a mother&rsquo;s farewell &mdash; now translated into modern English for the first time.</p>
+  `;
+}
+
+// ── RENDER: FOOTER ──
+function renderFooter() {
+  const footer = document.getElementById('site-footer');
+  footer.innerHTML = `
+    <p>Based on <a href="https://www.brepols.net/products/IS-9782503595405-1" target="_blank" rel="noopener"><em>Message in a Bottle</em></a> (Jenks &amp; Wubs-Mrozewicz, eds., 2022). Original texts published open-access via Brepols.</p>
+    <p>Modern English translations generated by AI (Claude, Anthropic) for accessibility. These are not peer-reviewed scholarly translations.</p>
+  `;
+}
+
+// ── RENDER: ABOUT ──
+function renderAbout() {
+  const main = document.getElementById('main-content');
+  main.innerHTML = `
+    <div class="about-content">
+      <h2>The Story</h2>
+      <p>In the summer of 1533, a merchant ship sailing through the English Channel was seized by privateers from L&uuml;beck, a powerful Hanseatic city on the Baltic coast. The ship, captained by Adrian Johnson of Antwerp, was carrying cargo and correspondence bound for England. Among the confiscated goods were thirty-six letters that had never reached their intended recipients.</p>
+      <p>The letters are a remarkable cross-section of sixteenth-century commercial and personal life. They include business correspondence between English and Flemish merchants trading out of Antwerp, cargo manifests written in cipher, family news, and &mdash; most memorably &mdash; a dying mother&rsquo;s farewell to her son, dictated from Brussels, hinting at a secret she had kept in her heart all her life.</p>
+      <p>Confiscated as evidence in the legal proceedings that followed the seizure, the letters survived in the L&uuml;beck city archives for nearly five centuries. They are an extraordinarily rare survival: private letters from ordinary merchants and their families, preserved not by design but by the accident of piracy.</p>
+
+      <h2>About the Translations</h2>
+      <p>The modern English translations presented here were generated by AI (Claude, Anthropic). They are intended to make these letters accessible to a general audience for the first time. They are <strong>not</strong> peer-reviewed scholarly translations and should not be cited as such.</p>
+      <p>The original letters were written in Middle English, Middle Dutch, and Low German. Readers interested in the precise wording should consult the original transcriptions, which are provided alongside each translation and can be expanded using the toggle button in each letter&rsquo;s detail view.</p>
+
+      <h2>The Original Publication</h2>
+      <p>The source texts and editorial apparatus are drawn from:</p>
+      <p>Stuart Jenks &amp; Justyna Wubs-Mrozewicz (eds.), <em>Message in a Bottle: Merchants&rsquo; Letters, Hanseatic Experiences and the English Channel, 1533</em> (Turnhout: Brepols, 2022).</p>
+      <p>The volume is available open-access from <a href="https://www.brepols.net/products/IS-9782503595405-1" target="_blank" rel="noopener">Brepols Publishers</a>.</p>
+
+      <h2>Credits</h2>
+      <ul class="credit-list">
+        <li><strong>Original editors:</strong> Stuart Jenks &amp; Justyna Wubs-Mrozewicz</li>
+        <li><strong>AI translations:</strong> Claude (Anthropic)</li>
+        <li><strong>Digital edition:</strong> Tomasz Szymaniec</li>
+      </ul>
+    </div>
+  `;
+}
+
+// ── HTML ESCAPING ──
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function truncate(str, len) {
+  if (!str) return '';
+  const s = String(str);
+  if (s.length <= len) return s;
+  return s.slice(0, len).replace(/\s+\S*$/, '') + '\u2026';
+}
+
+function textToParagraphs(text, cls) {
+  if (!text) return '';
+  return text.split(/\n\n+/).map(p => `<p class="${cls}">${escapeHtml(p.trim())}</p>`).join('');
+}
+
+// ── RENDER: LETTERS INDEX ──
+function renderLetters() {
+  const main = document.getElementById('main-content');
+  const letter27 = LETTERS.find(l => l.id === 27);
+
+  // Featured card
+  let html = '';
+  if (letter27) {
+    html += `<div class="featured" onclick="navigate('letters', {type:'letter', id:27})">
+      <div class="sender-line">${escapeHtml(letter27.sender)} <span class="to">to</span> ${escapeHtml(letter27.recipient)}</div>
+      <div class="meta-line">${escapeHtml(letter27.origin)} &middot; ${escapeHtml(letter27.date)} &middot; ${escapeHtml(letter27.language)}</div>
+      <div class="excerpt">I, Kathryna your mother, have a great desire to see you once more with my own living eyes, before I depart this earth. And know that I still have something particular to say and tell you, which I have always kept secretly in my heart.</div>
+      <div class="summary-text">${escapeHtml(letter27.summary)}</div>
+      <span class="read-link">Read this letter &rarr;</span>
+    </div>`;
+  }
+
+  // Section divider
+  html += `<div class="section-divider"><h2>All Letters</h2></div>`;
+
+  // Filter bar
+  const typeFilters = [
+    { value: 'all', label: 'All' },
+    { value: 'business', label: 'Business' },
+    { value: 'personal', label: 'Personal' },
+    { value: 'mixed', label: 'Mixed' }
+  ];
+  const langFilters = [
+    { value: 'all', label: 'All' },
+    { value: 'Middle English', label: 'Middle English' },
+    { value: 'Middle Dutch', label: 'Middle Dutch' },
+    { value: 'Low German', label: 'Low German' }
+  ];
+
+  html += `<div class="filters">`;
+  html += `<span class="filter-label">Type</span>`;
+  typeFilters.forEach(f => {
+    html += `<button class="filter-pill${filters.type === f.value ? ' active' : ''}" data-filter="type" data-value="${f.value}">${f.label}</button>`;
+  });
+  html += `<div class="filter-sep"></div>`;
+  html += `<span class="filter-label">Language</span>`;
+  langFilters.forEach(f => {
+    html += `<button class="filter-pill${filters.language === f.value ? ' active' : ''}" data-filter="language" data-value="${f.value}">${f.label}</button>`;
+  });
+  html += `<div class="filter-sep"></div>`;
+  html += `<button class="filter-pill${filters.notable ? ' active' : ''}" data-filter="notable" data-value="toggle">Notable</button>`;
+  html += `</div>`;
+
+  // Filter logic
+  const filtered = LETTERS.filter(l => {
+    if (filters.type !== 'all' && l.letter_type !== filters.type) return false;
+    if (filters.language !== 'all' && l.language !== filters.language) return false;
+    if (filters.notable && !l.notable) return false;
+    return true;
+  });
+
+  // Letter list
+  if (filtered.length === 0) {
+    html += `<div class="empty-state">No letters match the current filters.</div>`;
+  } else {
+    html += `<div class="letter-list">`;
+    filtered.forEach((l, i) => {
+      const delay = (0.03 * i).toFixed(2);
+      html += `<div class="letter-row" data-id="letter-${l.id}" data-letter-id="${l.id}" style="animation-delay:${delay}s">
+        <div class="row-number">${l.id}</div>
+        <div class="row-body">
+          <h3>${escapeHtml(l.sender)} <span class="arrow">to</span> ${escapeHtml(l.recipient)}</h3>
+          <p class="summary">${escapeHtml(truncate(l.summary, 160))}</p>
+        </div>
+        <div class="row-meta">
+          <span class="date">${escapeHtml(l.date)}</span>
+          <span class="lang">${escapeHtml(l.language)}</span>
+          ${l.notable ? '<span class="badge-notable">Notable</span>' : ''}
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  main.innerHTML = html;
+
+  // Wire filter clicks
+  main.querySelectorAll('.filter-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      const v = btn.dataset.value;
+      if (f === 'notable') {
+        filters.notable = !filters.notable;
+      } else {
+        filters[f] = v;
+      }
+      renderLetters();
+      scrollToActive();
+    });
+  });
+
+  // Wire letter row clicks
+  main.querySelectorAll('.letter-row').forEach(row => {
+    row.addEventListener('click', () => {
+      navigate('letters', { type: 'letter', id: parseInt(row.dataset.letterId) });
+    });
+  });
+}
+
+// ── RENDER: CASE FILE INDEX ──
+function renderCaseFile() {
+  const main = document.getElementById('main-content');
+  const SECTION_ORDER = ['II', 'III', 'IV', 'V', 'VI', 'VII'];
+
+  let html = `<p class="intro-text">The administrative documents assembled here &mdash; depositions, inventories, schedules of losses, legal instruments, and certificates &mdash; record the legal aftermath of the seizure of Adrian Johnson&rsquo;s ship in August 1533. Together they reveal the bureaucratic machinery of early modern maritime dispute resolution, from the initial interrogation of captain and crew to the painstaking itemisation of lost goods.</p>`;
+
+  let rowIndex = 0;
+  SECTION_ORDER.forEach(sec => {
+    const docs = DOCUMENTS.filter(d => d.section === sec);
+    if (docs.length === 0) return;
+    const title = docs[0].section_title;
+    html += `<div class="section-header">
+      <span class="section-num">Section ${escapeHtml(sec)}</span>
+      <h3>${escapeHtml(title)}</h3>
+    </div>`;
+    docs.forEach(d => {
+      const delay = (0.03 * rowIndex).toFixed(2);
+      rowIndex++;
+      html += `<div class="doc-row" data-id="doc-${d.id}" data-doc-id="${d.id}" style="animation-delay:${delay}s">
+        <div class="row-number">${d.id}</div>
+        <div class="row-body">
+          <h3>${escapeHtml(d.title)}</h3>
+          <p class="summary">${escapeHtml(truncate(d.summary, 160))}</p>
+        </div>
+        <div class="row-meta">
+          <span class="date">${escapeHtml(d.date)}</span>
+          <span class="badge-type">${escapeHtml(d.document_type)}</span>
+          ${d.notable ? '<span class="badge-notable">Notable</span>' : ''}
+        </div>
+      </div>`;
+    });
+  });
+
+  main.innerHTML = html;
+
+  // Wire doc row clicks
+  main.querySelectorAll('.doc-row').forEach(row => {
+    row.addEventListener('click', () => {
+      navigate('casefile', { type: 'doc', id: parseInt(row.dataset.docId) });
+    });
+  });
+}
+
+// ── RENDER: DETAIL PANEL ──
+function renderDetail() {
+  const overlay = document.getElementById('detail-overlay');
+  if (!currentDetail) {
+    overlay.className = 'detail-overlay';
+    overlay.innerHTML = '';
+    document.body.style.overflow = '';
+    return;
+  }
+
+  const isLetter = currentDetail.type === 'letter';
+  const item = isLetter
+    ? LETTERS.find(l => l.id === currentDetail.id)
+    : DOCUMENTS.find(d => d.id === currentDetail.id);
+
+  if (!item) {
+    overlay.className = 'detail-overlay';
+    overlay.innerHTML = '';
+    document.body.style.overflow = '';
+    return;
+  }
+
+  document.body.style.overflow = 'hidden';
+  overlay.className = 'detail-overlay open';
+
+  let html = `<div class="detail-panel">`;
+  html += `<button class="detail-close" aria-label="Close">&times;</button>`;
+
+  // Header
+  html += `<div class="detail-header">`;
+  html += `<div class="number">${item.id}</div>`;
+
+  if (isLetter) {
+    html += `<h2>${escapeHtml(item.sender)} <span style="font-weight:400;font-style:italic;color:var(--sepia-mid);font-size:0.85em">to</span> ${escapeHtml(item.recipient)}</h2>`;
+  } else {
+    html += `<h2>${escapeHtml(item.title)}</h2>`;
+  }
+
+  // Meta row
+  html += `<div class="detail-meta-row">`;
+  html += `<div class="detail-meta-item"><span class="meta-label">Date</span><span class="meta-value">${escapeHtml(item.date)}</span></div>`;
+  if (isLetter) {
+    if (item.origin) html += `<div class="detail-meta-item"><span class="meta-label">Origin</span><span class="meta-value">${escapeHtml(item.origin)}</span></div>`;
+  } else {
+    if (item.location) html += `<div class="detail-meta-item"><span class="meta-label">Location</span><span class="meta-value">${escapeHtml(item.location)}</span></div>`;
+  }
+  html += `<div class="detail-meta-item"><span class="meta-label">Language</span><span class="meta-value">${escapeHtml(item.language)}</span></div>`;
+  if (isLetter) {
+    html += `<div class="detail-meta-item"><span class="meta-label">Type</span><span class="meta-value">${escapeHtml(item.letter_type)}</span></div>`;
+  } else {
+    html += `<div class="detail-meta-item"><span class="meta-label">Type</span><span class="meta-value">${escapeHtml(item.document_type)}</span></div>`;
+  }
+  html += `</div>`;
+
+  // Theme tags
+  if (item.themes && item.themes.length > 0) {
+    html += `<div class="theme-tags">`;
+    item.themes.forEach(t => {
+      html += `<span class="theme-tag">${escapeHtml(t.replace(/_/g, ' '))}</span>`;
+    });
+    html += `</div>`;
+  }
+
+  html += `</div>`; // close detail-header
+
+  // Notable reason (for documents)
+  if (!isLetter && item.notable && item.notable_reason) {
+    html += `<div class="detail-section">
+      <h3>Why Notable</h3>
+      <div class="detail-text">${escapeHtml(item.notable_reason)}</div>
+    </div>`;
+  }
+
+  // Notable reason (for letters)
+  if (isLetter && item.notable && item.notable_reason) {
+    html += `<div class="detail-section">
+      <h3>Why Notable</h3>
+      <div class="detail-text">${escapeHtml(item.notable_reason)}</div>
+    </div>`;
+  }
+
+  // Summary
+  html += `<div class="detail-section">
+    <h3>Summary</h3>
+    <div class="detail-text summary">${escapeHtml(item.summary)}</div>
+  </div>`;
+
+  // Translation
+  const translationText = item.modern_english_translation;
+  if (translationText) {
+    html += `<div class="detail-section">
+      <h3>Modern English Translation</h3>
+      ${textToParagraphs(translationText, 'detail-text')}
+      <div class="ai-note">This translation was generated by AI (Claude, Anthropic) for accessibility. It is not a peer-reviewed scholarly translation. For the original text, see below.</div>
+    </div>`;
+  }
+
+  // Original text toggle
+  const originalText = isLetter ? item.original_transcription : item.content;
+  if (originalText) {
+    const origLabel = isLetter ? 'original transcription' : 'original text';
+    html += `<div class="detail-section">
+      <button class="toggle-btn" data-target="original-text"><span class="chevron">&#9654;</span> Show ${origLabel} (${escapeHtml(item.language)})</button>
+      <div class="collapsible" id="original-text">
+        ${textToParagraphs(originalText, 'detail-text original')}
+      </div>
+    </div>`;
+  }
+
+  // Editorial notes toggle
+  if (item.editorial_notes && item.editorial_notes.trim()) {
+    html += `<div class="detail-section">
+      <button class="toggle-btn" data-target="editorial-notes"><span class="chevron">&#9654;</span> Show editorial notes</button>
+      <div class="collapsible" id="editorial-notes">
+        ${textToParagraphs(item.editorial_notes, 'detail-text original')}
+      </div>
+    </div>`;
+  }
+
+  html += `</div>`; // close detail-panel
+  overlay.innerHTML = html;
+
+  // Wire close button
+  overlay.querySelector('.detail-close').addEventListener('click', () => {
+    navigate(currentTab, null);
+  });
+
+  // Wire toggle buttons
+  overlay.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      const isOpen = target.classList.toggle('open');
+      btn.classList.toggle('expanded', isOpen);
+      const label = btn.textContent.trim();
+      if (isOpen) {
+        btn.innerHTML = btn.innerHTML.replace('Show ', 'Hide ');
+      } else {
+        btn.innerHTML = btn.innerHTML.replace('Hide ', 'Show ');
+      }
+    });
+  });
+
+  // Stop panel clicks from closing overlay
+  const panel = overlay.querySelector('.detail-panel');
+  if (panel) {
+    panel.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  }
+}
+
+// ── SCROLL TO ACTIVE ──
+function scrollToActive() {
+  if (!currentDetail) return;
+  const selector = `[data-id="${currentDetail.type}-${currentDetail.id}"]`;
+  const el = document.querySelector(selector);
+  if (el) {
+    requestAnimationFrame(() => {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+}
+
+// ── RENDER: MAIN ──
+function render() {
+  renderNav();
+  renderHeader();
+  renderFooter();
+
+  if (currentTab === 'about') {
+    renderAbout();
+  } else if (currentTab === 'casefile') {
+    renderCaseFile();
+  } else {
+    renderLetters();
+  }
+
+  // Detail panel
+  renderDetail();
+
+  // Scroll to active row
+  scrollToActive();
+}
+
+// ── ESCAPE KEY ──
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && currentDetail) {
+    navigate(currentTab, null);
+  }
+});
+
+// ── OVERLAY CLICK ──
+document.getElementById('detail-overlay').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) {
+    navigate(currentTab, null);
+  }
+});
+
+// ── INITIAL LOAD ──
+const initialState = parseHash();
+currentTab = initialState.tab;
+currentDetail = initialState.detail;
+render();
+</script>
+
+</body>
+</html>
