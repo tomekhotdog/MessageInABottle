@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option A: The Archive — Hanseatic Letters</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --cream-dark: #ebe4d6;
+    --ink: #2c2418;
+    --ink-light: #5a4e3c;
+    --ink-faint: #8a7e6c;
+    --red-accent: #8b3a3a;
+    --red-light: #a85454;
+    --rule: #c4b9a4;
+    --rule-light: #d9d0c0;
+    --white: #faf8f4;
+    --shadow: rgba(44, 36, 24, 0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { font-size: 17px; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Subtle paper texture via noise */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── HEADER ── */
+  header {
+    border-bottom: 1px solid var(--rule);
+    padding: 3rem 0 2rem;
+    background: var(--white);
+  }
+
+  header .inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  header .overline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 2.8rem;
+    line-height: 1.15;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  header .subtitle {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: var(--ink-light);
+    margin-top: 0.5rem;
+    max-width: 620px;
+  }
+
+  /* ── NAV TABS ── */
+  nav.tabs {
+    border-bottom: 1px solid var(--rule);
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  nav.tabs .inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    gap: 0;
+  }
+
+  nav.tabs button {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-faint);
+    background: none;
+    border: none;
+    padding: 0.85rem 1.5rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.3s;
+    position: relative;
+    bottom: -1px;
+  }
+
+  nav.tabs button:hover { color: var(--ink); }
+
+  nav.tabs button.active {
+    color: var(--ink);
+    border-bottom-color: var(--red-accent);
+  }
+
+  /* ── MAIN LAYOUT ── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  /* ── INTRODUCTION ── */
+  .intro {
+    max-width: 680px;
+    margin-bottom: 3rem;
+  }
+
+  .intro h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+
+  .intro p {
+    font-size: 0.95rem;
+    color: var(--ink-light);
+    line-height: 1.8;
+  }
+
+  .intro p + p { margin-top: 0.75rem; }
+
+  /* ── FILTERS ── */
+  .filters {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    align-items: center;
+  }
+
+  .filters .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-right: 0.25rem;
+  }
+
+  .filter-pill {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0.35rem 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-pill:hover {
+    border-color: var(--ink-faint);
+    color: var(--ink);
+  }
+
+  .filter-pill.active {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+
+  /* ── LETTER GRID ── */
+  .letter-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .letter-card {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--rule-light);
+    display: grid;
+    grid-template-columns: 3.5rem 1fr auto;
+    gap: 1.5rem;
+    align-items: start;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .letter-card:hover {
+    background: rgba(255, 255, 255, 0.5);
+    margin: 0 -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .letter-card:last-child { border-bottom: 1px solid var(--rule-light); }
+
+  .card-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--rule);
+    line-height: 1;
+    padding-top: 0.15rem;
+  }
+
+  .card-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+  }
+
+  .card-body h3 .arrow {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 400;
+    color: var(--ink-faint);
+    font-size: 0.9rem;
+    margin: 0 0.15rem;
+  }
+
+  .card-body .summary {
+    font-size: 0.85rem;
+    color: var(--ink-light);
+    line-height: 1.65;
+    max-width: 580px;
+  }
+
+  .card-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.3rem;
+    padding-top: 0.15rem;
+    white-space: nowrap;
+  }
+
+  .card-meta .date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+  }
+
+  .card-meta .lang {
+    font-size: 0.72rem;
+    font-style: italic;
+    color: var(--ink-faint);
+  }
+
+  .badge-notable {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red-accent);
+    border: 1px solid var(--red-accent);
+    border-radius: 1px;
+    padding: 0.15rem 0.4rem;
+    margin-top: 0.2rem;
+  }
+
+  /* ── LETTER DETAIL ── */
+  .detail-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(44, 36, 24, 0.3);
+    backdrop-filter: blur(2px);
+  }
+
+  .detail-overlay.open { display: block; }
+
+  .detail-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(720px, 90vw);
+    height: 100vh;
+    background: var(--white);
+    overflow-y: auto;
+    box-shadow: -4px 0 24px var(--shadow);
+    padding: 3rem 2.5rem 4rem;
+    animation: slideIn 0.3s ease-out;
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  .detail-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.5rem;
+    color: var(--ink-faint);
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .detail-close:hover { color: var(--ink); }
+
+  .detail-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule-light);
+  }
+
+  .detail-header .number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--rule);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .detail-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+
+  .detail-meta-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .detail-meta-item {
+    font-size: 0.78rem;
+  }
+
+  .detail-meta-item .meta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+
+  .detail-meta-item .meta-value {
+    color: var(--ink-light);
+  }
+
+  .detail-section {
+    margin-bottom: 2rem;
+  }
+
+  .detail-section h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule-light);
+  }
+
+  .detail-section .text {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: var(--ink);
+  }
+
+  .detail-section .text.summary-text {
+    font-size: 0.95rem;
+    color: var(--ink-light);
+    font-style: italic;
+  }
+
+  .detail-section .text.original {
+    font-size: 0.82rem;
+    color: var(--ink-light);
+    line-height: 1.75;
+  }
+
+  .theme-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .theme-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    background: var(--cream);
+    padding: 0.25rem 0.55rem;
+    border-radius: 1px;
+  }
+
+  .toggle-original {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.82rem;
+    color: var(--red-accent);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.35rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .toggle-original:hover { color: var(--red-light); }
+
+  .toggle-original .chevron {
+    font-size: 0.65rem;
+    transition: transform 0.2s;
+  }
+
+  .toggle-original.expanded .chevron {
+    transform: rotate(90deg);
+  }
+
+  .original-text {
+    display: none;
+    margin-top: 0.75rem;
+  }
+
+  .original-text.visible { display: block; }
+
+  /* ── AI DISCLAIMER ── */
+  .ai-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--ink-faint);
+    background: var(--cream);
+    padding: 0.6rem 0.8rem;
+    border-left: 2px solid var(--rule);
+    margin-top: 1rem;
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2rem 0;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  footer a { color: var(--red-accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── ANIMATIONS ── */
+  .letter-card {
+    opacity: 0;
+    transform: translateY(8px);
+    animation: fadeUp 0.4s ease-out forwards;
+  }
+
+  .letter-card:nth-child(1) { animation-delay: 0.05s; }
+  .letter-card:nth-child(2) { animation-delay: 0.1s; }
+  .letter-card:nth-child(3) { animation-delay: 0.15s; }
+  .letter-card:nth-child(4) { animation-delay: 0.2s; }
+  .letter-card:nth-child(5) { animation-delay: 0.25s; }
+  .letter-card:nth-child(6) { animation-delay: 0.3s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <div class="overline">A Digital Edition &middot; Jenks &amp; Wubs-Mrozewicz, 2022</div>
+    <h1>Message in a Bottle</h1>
+    <p class="subtitle">Thirty-six merchants' letters intercepted in the English Channel, 1533 &mdash; translated into modern English for the first time.</p>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="inner">
+    <button class="active">The Letters</button>
+    <button>The Case File</button>
+    <button>About</button>
+  </div>
+</nav>
+
+<main>
+  <div class="intro">
+    <h2>The Letters</h2>
+    <p>In the summer of 1533, Lübeck privateers seized a merchant ship in the English Channel. Aboard were letters that had never reached their recipients &mdash; business correspondence, family news, a dying mother's secret. Confiscated as evidence, they survived in the Lübeck city archives for nearly five centuries.</p>
+    <p>This edition presents all 36 letters with modern English translations alongside the original texts in Middle English, Middle Dutch, and Low German.</p>
+  </div>
+
+  <div class="filters">
+    <span class="label">Filter</span>
+    <button class="filter-pill active">All</button>
+    <button class="filter-pill">Business</button>
+    <button class="filter-pill">Personal</button>
+    <button class="filter-pill">Mixed</button>
+    <span class="label" style="margin-left: 1rem;">Language</span>
+    <button class="filter-pill">Middle English</button>
+    <button class="filter-pill">Middle Dutch</button>
+    <button class="filter-pill">Low German</button>
+  </div>
+
+  <div class="letter-grid">
+
+    <div class="letter-card" onclick="openDetail(this)" data-letter="2">
+      <div class="card-number">2</div>
+      <div class="card-body">
+        <h3>William Gresham <span class="arrow">to</span> his cousin Ellen</h3>
+        <p class="summary">A warm letter from Antwerp coordinating the distribution of barrels of sturgeon among friends, family, and notably Master Cromwell. A vivid window into the gift economy linking London merchants with Henry VIII's inner circle.</p>
+      </div>
+      <div class="card-meta">
+        <span class="date">21 July 1533</span>
+        <span class="lang">Middle English</span>
+        <span class="badge-notable">Notable</span>
+      </div>
+    </div>
+
+    <div class="letter-card" onclick="openDetail(this)" data-letter="5">
+      <div class="card-number">5</div>
+      <div class="card-body">
+        <h3>William Gresham <span class="arrow">to</span> his wife</h3>
+        <p class="summary">A cargo manifest disguised as a letter &mdash; haberdashery goods shipped from Antwerp with prices in secret merchant cipher. Contains no personal sentiment whatsoever, only commerce in code.</p>
+      </div>
+      <div class="card-meta">
+        <span class="date">undated</span>
+        <span class="lang">Middle English</span>
+        <span class="badge-notable">Notable</span>
+      </div>
+    </div>
+
+    <div class="letter-card" onclick="openDetail(this)" data-letter="15">
+      <div class="card-number">15</div>
+      <div class="card-body">
+        <h3>Harry Austen <span class="arrow">to</span> his wife</h3>
+        <p class="summary">A brief, affectionate note from Antwerp arranging delivery of three firkins of sturgeon &mdash; the largest for a business associate, the rest for the family. Domestic economy in miniature.</p>
+      </div>
+      <div class="card-meta">
+        <span class="date">24 July 1533</span>
+        <span class="lang">Middle English</span>
+      </div>
+    </div>
+
+    <div class="letter-card" onclick="openDetail(this)" data-letter="27">
+      <div class="card-number">27</div>
+      <div class="card-body">
+        <h3>Katrijne Tehaselare <span class="arrow">to</span> her son Marten</h3>
+        <p class="summary">A dying mother's farewell dictated from Brussels, disclosing a grave illness and hinting at a secret kept in her heart that she wishes to reveal in person. One of the most emotionally raw surviving letters of the period.</p>
+      </div>
+      <div class="card-meta">
+        <span class="date">27 May 1533</span>
+        <span class="lang">Middle Dutch</span>
+        <span class="badge-notable">Notable</span>
+      </div>
+    </div>
+
+    <div class="letter-card" data-letter="3">
+      <div class="card-number">3</div>
+      <div class="card-body">
+        <h3>William Laund <span class="arrow">to</span> William Mery</h3>
+        <p class="summary">An apprentice's report from Antwerp mixing spice prices with news of death and a debtor who wept when confronted. Commerce and human frailty on the same page.</p>
+      </div>
+      <div class="card-meta">
+        <span class="date">22 July 1533</span>
+        <span class="lang">Middle English</span>
+      </div>
+    </div>
+
+    <div class="letter-card" data-letter="36">
+      <div class="card-number">36</div>
+      <div class="card-body">
+        <h3>Marx Meyer <span class="arrow">to</span> the Lübeck Council</h3>
+        <p class="summary">A Hanseatic merchant detained in London warns the council of a diplomatic crisis &mdash; "better to lose ten hundredweight of gold than such a privilege." A man caught between two sovereign powers.</p>
+      </div>
+      <div class="card-meta">
+        <span class="date">1533</span>
+        <span class="lang">Low German</span>
+        <span class="badge-notable">Notable</span>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Detail panel -->
+<div class="detail-overlay" id="detailOverlay" onclick="closeDetail(event)">
+  <div class="detail-panel" onclick="event.stopPropagation()">
+    <button class="detail-close" onclick="closeDetail()">&times;</button>
+
+    <div class="detail-header">
+      <div class="number">27</div>
+      <h2>Katrijne Tehaselare to her son Marten Tehaselare</h2>
+      <div class="detail-meta-row">
+        <div class="detail-meta-item">
+          <span class="meta-label">Date</span>
+          <span class="meta-value">27 May 1533</span>
+        </div>
+        <div class="detail-meta-item">
+          <span class="meta-label">From</span>
+          <span class="meta-value">Brussels</span>
+        </div>
+        <div class="detail-meta-item">
+          <span class="meta-label">Language</span>
+          <span class="meta-value">Middle Dutch</span>
+        </div>
+        <div class="detail-meta-item">
+          <span class="meta-label">Type</span>
+          <span class="meta-value">Personal</span>
+        </div>
+      </div>
+      <div class="theme-tags">
+        <span class="theme-tag">family</span>
+        <span class="theme-tag">health</span>
+        <span class="theme-tag">women writing</span>
+        <span class="theme-tag">gifts</span>
+        <span class="theme-tag">social networks</span>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h3>Summary</h3>
+      <p class="text summary-text">Katrijne Tehaselare writes from Brussels to her son Marten in a deeply emotional letter, disclosing that she has been gravely ill and feared she would never see him again. She expresses a desperate longing to see him once more before she dies and hints at a secret she has kept in her heart that she wishes to reveal in person. A postscript notes that the sister Babelken has died.</p>
+    </div>
+
+    <div class="detail-section">
+      <h3>Modern English Translation</h3>
+      <p class="text">Friendly greetings as aforesaid to you, Marten Tehaselare, my dear friend.</p>
+      <p class="text" style="margin-top: 0.75rem;">You will be pleased to know that I, Katrijne, your mother, am in reasonable health at this time. As I hope, by the grace of God, that you also are, together with your wife and your household, of whom I have had no news, which weighs heavily on my heart.</p>
+      <p class="text" style="margin-top: 0.75rem;">Marten, my son, I wish to let you know that I have had a great illness, such that I believed I would never see you again. But God the Lord &mdash; may He be thanked &mdash; I have now recovered.</p>
+      <p class="text" style="margin-top: 0.75rem;">I wish to let you know that I have learned that you sent me a tabard of cloth, for which I thank you heartily.</p>
+      <p class="text" style="margin-top: 0.75rem;">Marten, I wish you to know that I, Kathryna your mother, have a great desire to see you once more with my own living eyes, before I depart this earth. And know that I still have something particular to say and tell you, which I have always kept secretly in my heart.</p>
+      <p class="text" style="margin-top: 0.75rem;">Nothing more at this time, except that God be with you always. Written by me, Jan Speeckaert, in Brussels, the 27th day of May.</p>
+      <p class="text" style="margin-top: 0.75rem;"><em>Also, Merten, my dear friend. I wish to let you know that the widow Bettulen, your wife's mother, sends you warm greetings, along with Lussken her daughter. And know that Babelken, her sister, has passed away; may God have mercy on her soul.</em></p>
+
+      <div class="ai-note">Translation generated by AI (Claude, Anthropic). Not a scholarly translation &mdash; provided for accessibility. Refer to the original transcription for research use.</div>
+    </div>
+
+    <div class="detail-section">
+      <button class="toggle-original" onclick="toggleOriginal(this)">
+        <span class="chevron">&#9654;</span> Show original transcription (Middle Dutch)
+      </button>
+      <div class="original-text">
+        <p class="text original">Vrundelycke groetenisse voerscreven aen u Merten Diehaselare amijn beminde vruntta. U sal believen te weten, hoe dat ic Katrijne uwe moeder in redelycke pointe ben op desen tijt. Alsoe ic hope bij der gratien Goeds, dat ghij oock zijt met ouwer huysvrouwen ende ouwe huysghesinde, waeraf dat ick me gheen kinnesse en hebbe, dat welcke mij hertlijcke laedt es.</p>
+        <p class="text original" style="margin-top: 0.75rem;">Marten, mijn sone, ick late u te weten, hoe dat ic een groote crackte ghehadt hebbe, alsoe dat bicb meynde nimmermeer meer ou te siene te hebben. Maer Godt die heere, die moet ghedanct sijn, het es nu ghebetert.</p>
+        <p class="text original" style="margin-top: 0.75rem;">Ic late u te weten, hoe dat ic verstaen hebbe, dat ghij mij eenen tabbart laken ghesonden hebt, waeraf ic bub hertelyc dancke.</p>
+        <p class="text original" style="margin-top: 0.75rem;">Maerten, es mij noyt ter hart ghecommen gheweest, alsoe ghij ghemeyten hadt, dattet ter rechter hant thuys souwe ghecommen hebbe. Marten, ic late u weten, hoe dat ic Kathryna ouwe moeder groete begheerte hebbe, om u noch eens bteb siene met mijnen levende lijve, eer ic eertrijcke sceyde. Ende weet, dat ic ou noch een wat zondelinghes te sprecken ende zegghen hebbe, dat ic altoors in mijn herte secretelijc gehouden hebbe.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>Based on <a href="#">Message in a Bottle</a> (Jenks &amp; Wubs-Mrozewicz, eds., 2022). Original texts published open-access via Brepols. Translations by AI &mdash; not peer-reviewed.</p>
+</footer>
+
+<script>
+function openDetail() {
+  document.getElementById('detailOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail(e) {
+  if (e && e.target !== e.currentTarget) return;
+  document.getElementById('detailOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function toggleOriginal(btn) {
+  btn.classList.toggle('expanded');
+  const text = btn.nextElementSibling;
+  text.classList.toggle('visible');
+  const label = btn.querySelector('.chevron').nextSibling;
+  if (text.classList.contains('visible')) {
+    label.textContent = ' Hide original transcription (Middle Dutch)';
+  } else {
+    label.textContent = ' Show original transcription (Middle Dutch)';
+  }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeDetail();
+});
+</script>
+
+</body>
+</html>

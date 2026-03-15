@@ -5,10 +5,13 @@ from pathlib import Path
 
 
 def build():
-    letters = json.loads(Path("letters.json").read_text(encoding="utf-8"))
-    documents = json.loads(Path("documents.json").read_text(encoding="utf-8"))
+    root = Path(__file__).resolve().parent.parent
+    code = root / "code"
 
-    template = Path("site/template.html").read_text(encoding="utf-8")
+    letters = json.loads((root / "letters.json").read_text(encoding="utf-8"))
+    documents = json.loads((root / "documents.json").read_text(encoding="utf-8"))
+
+    template = (code / "site" / "template.html").read_text(encoding="utf-8")
 
     # Inject data as JS variables
     letters_js = json.dumps(letters, ensure_ascii=False)
@@ -22,7 +25,7 @@ def build():
         f"const DOCUMENTS = {documents_js};"
     )
 
-    dist = Path("dist")
+    dist = root / "dist"
     dist.mkdir(exist_ok=True)
     (dist / "index.html").write_text(html, encoding="utf-8")
     print(f"Built dist/index.html ({len(html):,} bytes)")
