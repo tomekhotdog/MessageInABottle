@@ -6,6 +6,8 @@ In the summer of 1533, Lübeck privateers seized a merchant ship off the south c
 
 This project takes the scholarly transcriptions published in [*Message in a Bottle*](https://www.brepols.net/products/IS-9782503595405-1) (Jenks & Wubs-Mrozewicz, eds., 2022) and makes them accessible to a general audience through AI-generated modern English translations and a browsable web interface.
 
+![Message in a Bottle](message-in-a-bottle-screenshot.png)
+
 ## What's included
 
 - **36 merchants' letters** in Middle English, Middle Dutch, and Low German — with translations, summaries, and thematic tags
